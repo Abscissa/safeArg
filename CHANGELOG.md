@@ -5,7 +5,7 @@
 
 TBD
 -------------------
-- **Enhancement:** Auto-generated version number shown in help screen, and via new --version flag.
+- **Enhancement:** Auto-generated version number shown in help screen, and via new ```--version``` flag.
 - **Change:** Cleaned up internal directory structure.
 - **Change:** Documentation improvements, including changelog and license files.
 
