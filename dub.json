@@ -1,0 +1,13 @@
+﻿{
+	"name": "safearg",
+	"description": "Passes a null-delimited list of command like args to a program.",
+	"authors": ["Nick Sabalausky"],
+	"homepage": "https://github.com/Abscissa/safeArg",
+	"license": "zlib/libpng",
+	"targetType": "executable",
+	"sourcePaths": ["."],
+	"importPaths": ["."],
+	"dependencies": {
+		"scriptlike": "==0.7.0"
+	}
+}
