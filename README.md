@@ -1,5 +1,5 @@
-safeArg - Passes a null-delimited list of command like args to a program
-========================================================================
+safeArg - Pass a null-delimited list of command like args to a program
+======================================================================
 
 Using eval or command substitution to pass arguments to a program is error-prone, non-portable and a potential security risk:
 
