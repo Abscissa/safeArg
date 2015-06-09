@@ -1,3 +1,4 @@
 .dub/
 bin/
 dub.selections.json
+src/safearg/version_.d

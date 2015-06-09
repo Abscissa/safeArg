@@ -10,9 +10,11 @@ import std.stdio;
 import std.traits;
 
 import scriptlike.fail;
+import safearg.version_;
 
 immutable helpBanner =
 "safeArg - <https://github.com/Abscissa/safeArg>
+Version: "~appVersion~"
 -----------------------------------------------
 Takes a null-delimited list of args on stdin, and passes them as command line
 arguments to any program you choose.
@@ -28,14 +30,16 @@ A null-delimited list of command line arguments to app.
 
 options:";
 
+// Returns: Should program execution continue?
 bool doGetOpt(string[] args)
 {
 	immutable usageHint = "For usage, run: safearg --help";
+	bool showVersion;
 	
 	try
 	{
 		auto helpInfo = args.getopt(
-			// No other options supported right now.
+			"version", "Show safearg's version number and exit", &showVersion,
 		);
 
 		if(helpInfo.helpWanted)
@@ -47,6 +51,12 @@ bool doGetOpt(string[] args)
 	catch(GetOptException e)
 		fail(e.msg ~ "\n" ~ usageHint);
 	
+	if(showVersion)
+	{
+		writeln(appVersion);
+		return false;
+	}
+
 	if(args.length != 2)
 		fail("Wrong number of arguments\n" ~ usageHint);
 	

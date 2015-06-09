@@ -10,5 +10,7 @@
 	"sourcePaths": ["src"],
 	"dependencies": {
 		"scriptlike": "==0.7.0"
-	}
+	},
+	"preBuildCommands-posix": ["helper/gen_version.sh"],
+	"preBuildCommands-windows": ["helper\\gen_version.cmd"]
 }
