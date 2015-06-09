@@ -1,6 +1,8 @@
 safeArg - Pass a null-delimited list of command line args to a program
 ======================================================================
 
+[Changelog](https://github.com/Abscissa/safeArg/blob/master/CHANGELOG.md)
+
 Using eval or command substitution to pass arguments to a program is error-prone, non-portable and a potential security risk:
 
 - Error-Prone: Proper shell quoting/escaping rules can be complex and confusing. Ignoring proper quoting/escaping can cause your program to fail (or worse) on certain inputs (such as filepaths with spaces, or multi-line data).
