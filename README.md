@@ -1,7 +1,7 @@
 safeArg - Pass a null-delimited list of command line args to a program
 ======================================================================
 
-[Changelog](https://github.com/Abscissa/safeArg/blob/master/CHANGELOG.md)
+[ [Changelog](https://github.com/Abscissa/safeArg/blob/master/CHANGELOG.md) ]
 
 Using eval or command substitution to pass arguments to a program is error-prone, non-portable and a potential security risk:
 
