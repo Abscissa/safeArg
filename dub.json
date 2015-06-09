@@ -5,8 +5,9 @@
 	"homepage": "https://github.com/Abscissa/safeArg",
 	"license": "zlib/libpng",
 	"targetType": "executable",
-	"sourcePaths": ["."],
-	"importPaths": ["."],
+	"targetPath": "bin",
+	"targetName": "safearg",
+	"sourcePaths": ["src"],
 	"dependencies": {
 		"scriptlike": "==0.7.0"
 	}
