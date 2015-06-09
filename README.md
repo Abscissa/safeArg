@@ -44,3 +44,17 @@ With [DUB](http://code.dlang.org/getting_started) (requires an installed [D](htt
 ```bash
 $ dub build
 ```
+
+Differences from xargs -0
+-------------------------
+
+The Posix xargs tool has a ```-0``` flag that can do accomplish the same task as safeArg. But there some differences:
+
+- The command-line interfaces are different.
+- **xargs:** Has more features. **safeArg:** Simpler.
+- **xargs:** Defaults are contrained by legacy compatibility. **safeArg:** Defaults have been rethought and chosen based on safety and reliability.
+- **xargs:** Null-delimited *isn't* the default. **safeArg:** Null-delimited *is* the default.
+- **xargs:** If the argument list is long, automatically splits it into multiple invokations of the command (by default). This may or may not be appropriate, depending on the command). **safeArg:** Does not support splitting the argument list into multiple invokations. Leaves that up to an external tool.
+- **xargs:** There are some rare systems where ```-0``` isn't supported.
+- **xargs:** Built-in on nearly every Posix machine. Can be obtained for Windows, but is rarely installed. **safeArg:** Not built-in on any system, but obtaining it is exactly the same regardless of platform.
+- **xargs:** Built-in limits on command length, to match the OS environment. **safeArg:** No built-in limits (you may or may not still be constrained by your OS, but the shell interpreter's limits are bypassed).
