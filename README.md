@@ -45,6 +45,22 @@ With [DUB](http://code.dlang.org/getting_started) (requires an installed [D](htt
 $ dub build
 ```
 
+Usage
+-----
+```
+USAGE:
+safearg [options] program_to_run < INPUT
+
+INPUT:
+A null-delimited (by default) list of command line arguments to app.
+
+options:
+-n --newline Use \n and \r\n newlines as delimiter insetad of \0
+     --delim Use alternate character as delimiter insetad of \0 (ex: --delim=,)
+   --version Show safearg's version number and exit
+-h    --help This help information.
+```
+
 Differences from xargs -0
 -------------------------
 
