@@ -89,13 +89,13 @@ string[] parseNullDelimited(T)(T inputRange)
 	foreach(dataByte; inputRange)
 	{
 		//writeln(cast(char)dataByte);
-		if(dataByte != 0)
-			buf.put(dataByte);
-		else
+		if(dataByte == 0)
 		{
 			result ~= cast(string) buf.data.idup;
 			buf.clear();
 		}
+		else
+			buf.put(dataByte);
 	}
 	result ~= cast(string) buf.data.idup;
 
