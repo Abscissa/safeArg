@@ -38,11 +38,6 @@ $ safearg printf <datafile                # Works!
 Compiling
 ---------
 
-With [DMD](http://dlang.org):
-```bash
-$ dmd safearg.d
-```
-
 With [DUB](http://code.dlang.org/getting_started) (requires an installed [D](http://dlang.org) compiler):
 ```bash
 $ dub build
