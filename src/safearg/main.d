@@ -10,12 +10,12 @@ import std.stdio;
 import std.traits;
 
 import scriptlike.fail;
-import safearg.version_;
+import safearg.packageVersion;
 
 immutable helpBanner =
-"safeArg - <https://github.com/Abscissa/safeArg>
-Version: "~appVersion~"
------------------------------------------------
+"safeArg "~packageVersion~": <https://github.com/Abscissa/safeArg>
+Built on "~packageTimestamp~"
+-----------------------------------------------------
 Takes a null-delimited list of args on stdin, and passes them as command line
 arguments to any program you choose.
 
@@ -58,7 +58,7 @@ bool doGetOpt(ref string[] args)
 	
 	if(showVersion)
 	{
-		writeln(appVersion);
+		writeln(packageVersion);
 		return false;
 	}
 	

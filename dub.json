@@ -9,8 +9,8 @@
 	"targetName": "safearg",
 	"sourcePaths": ["src"],
 	"dependencies": {
-		"scriptlike": "==0.7.0"
+		"scriptlike": "~>0.8.0",
+		"gen-package-version": "~>0.9.0"
 	},
-	"preGenerateCommands-posix": ["helper/gen_version.sh"],
-	"preGenerateCommands-windows": ["helper\\gen_version.cmd"]
+	"preGenerateCommands": ["dub run gen-package-version -- safearg --dub"]
 }
