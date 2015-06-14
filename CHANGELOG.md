@@ -3,6 +3,10 @@
 
 (Dates below are YYYY/MM/DD)
 
+v0.9.4 - 2015/06/14
+-------------------
+- **Fixed:** Build failure for projects depending on safeArg (gen-package-version was run from wrong directory).
+
 v0.9.3 - 2015/06/14
 -------------------
 - **Enhancement:** Allow extra "initial-arguments" to be specified on the command line (ex: ```safearg echo -n < WHATEVER```).
