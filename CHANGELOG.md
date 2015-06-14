@@ -6,7 +6,7 @@
 v0.9.3 - 2015/06/14
 -------------------
 - **Enhancement:** Allow extra "initial-arguments" to be specified on the command line (ex: ```safearg echo -n < WHATEVER```).
-- **Enhancement:** Add ``--post|-p``` for "post"-arguments to be added to the *end* of the command line.
+- **Enhancement:** Add ```--post|-p``` for "post"-arguments to be added to the *end* of the command line.
 
 v0.9.2 - 2015/06/14
 -------------------
