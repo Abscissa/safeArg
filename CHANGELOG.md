@@ -3,7 +3,7 @@
 
 (Dates below are YYYY/MM/DD)
 
-TBD
+v0.9.2 - 2015/06/14
 -------------------
 - **Enhancement:** Use ```--newline|-n``` to delimit with newlines (both \n and \r\n) instead of \0.
 - **Enhancement:** Use ```--delim=VALUE``` to use custom one-byte delimiter instead of \0.
