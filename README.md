@@ -20,18 +20,18 @@ $ safearg program_to_run [initial-arguments] < INPUT
 
 For example (Granted, this example is using tools that aren't built-in on Windows, but it's only an example for illustration. Safearg itself is cross-platform, and sticking to only cross-platform tools would still work fine):
 ```bash
-$ printf "[%s]\n" abc 'hello world'       # Let's try doing this
+$ printf "[%s]\n" abc 'hello world'     # Let's try doing this
 [abc]
 [hello world]
 
-$ echo abc \'hello world\' >datafile      # Store in file: abc 'hello world'
-$ printf "[%s]\n" $(<datafile)            # Fails?! Plus, it's a security risk :(
+$ echo abc \'hello world\' >datafile    # Store in file: abc 'hello world'
+$ printf "[%s]\n" $(<datafile)          # Fails?! Plus, it's a security risk :(
 [abc]
 ['hello]
 [world']
 
-$ printf "\0abc\0hello world" >datafile  # Store in file: \0abc\0hello world
-$ safearg printf '[%s]\n' <datafile                # Works!
+$ printf "abc\0hello world" >datafile   # Store in file: abc\0hello world
+$ safearg printf '[%s]\n' <datafile     # Works!
 [abc]
 [hello world]
 ```
@@ -46,16 +46,44 @@ $ dub build
 
 Usage
 -----
+
+View this with ```safearg --help``` or ```dub run safearg -- --help```
+
 ```
+Takes a null-delimited list of args on stdin, and passes them as command line
+arguments to any program you choose.
+
+This is more secure, less error-prone, and more portable than using the shell's
+command substitution or otherwise relying on the shell to parse args.
+
 USAGE:
-safearg [options] program_to_run < INPUT
+safearg [options] program_to_run [initial-arguments] < INPUT
 
 INPUT:
 A null-delimited (by default) list of command line arguments to app.
 
-options:
+EXAMPLE:
+    printf 'mid1\0mid2' | safearg --post=end1 --post=end2 program_to_run first
+
+    The above (effectively) runs:
+    program_to_run first mid1 mid2 end1 end2
+
+EXAMPLE:
+    printf 'middle 1\0middle 2' | safearg --post=end printf '[%s]\n' first
+
+    The above (effectively) runs:
+    printf '[%s]\n' 'middle 1' 'middle 2' end
+
+    And outputs:
+    [first]
+    [middle 1]
+    [middle 2]
+    [end]
+
+OPTIONS:
 -n --newline Use \n and \r\n newlines as delimiter insetad of \0
      --delim Use alternate character as delimiter insetad of \0 (ex: --delim=,)
+-p    --post Extra "post"-args to be added at the end of the command line.
    --version Show safearg's version number and exit
 -h    --help This help information.
 ```

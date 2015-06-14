@@ -13,8 +13,8 @@ import scriptlike.fail;
 import safearg.packageVersion;
 
 immutable helpBanner =
-"safeArg "~packageVersion~": <https://github.com/Abscissa/safeArg>
-Built on "~packageTimestamp~"
+`safeArg `~packageVersion~`: <https://github.com/Abscissa/safeArg>
+Built on `~packageTimestamp~`
 -----------------------------------------------------
 Takes a null-delimited list of args on stdin, and passes them as command line
 arguments to any program you choose.
@@ -28,10 +28,29 @@ safearg [options] program_to_run [initial-arguments] < INPUT
 INPUT:
 A null-delimited (by default) list of command line arguments to app.
 
-options:";
+EXAMPLE:
+    printf 'mid1\0mid2' | safearg --post=end1 --post=end2 program_to_run first
+
+    The above (effectively) runs:
+    program_to_run first mid1 mid2 end1 end2
+
+EXAMPLE:
+    printf 'middle 1\0middle 2' | safearg --post=end printf '[%s]\n' first
+
+    The above (effectively) runs:
+    printf '[%s]\n' 'middle 1' 'middle 2' end
+
+    And outputs:
+    [first]
+    [middle 1]
+    [middle 2]
+    [end]
+
+OPTIONS:`;
 
 bool useNewlineDelim = false;
 string alternateDelim = null;
+string[] postArgs = null;
 
 // Returns: Should program execution continue?
 bool doGetOpt(ref string[] args)
@@ -44,6 +63,7 @@ bool doGetOpt(ref string[] args)
 		auto helpInfo = args.getopt(
 			"n|newline", `Use \n and \r\n newlines as delimiter insetad of \0`, &useNewlineDelim,
 			"delim",     `Use alternate character as delimiter insetad of \0 (ex: --delim=,)`, &alternateDelim,
+			"p|post",    `Extra "post"-args to be added at the end of the command line.`, &postArgs,
 			"version",   "Show safearg's version number and exit", &showVersion,
 		);
 
@@ -94,7 +114,7 @@ int main(string[] args)
 	
 	// Invoke command
 	try
-		return spawnProcess(args[1..$] ~ outArgs).wait();
+		return spawnProcess(args[1..$] ~ outArgs ~ postArgs).wait();
 	catch(ProcessException e)
 	{
 		fail(e.msg);
