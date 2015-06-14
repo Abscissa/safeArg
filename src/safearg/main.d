@@ -23,7 +23,7 @@ This is more secure, less error-prone, and more portable than using the shell's
 command substitution or otherwise relying on the shell to parse args.
 
 USAGE:
-safearg [options] program_to_run < INPUT
+safearg [options] program_to_run [initial-arguments] < INPUT
 
 INPUT:
 A null-delimited (by default) list of command line arguments to app.
@@ -68,8 +68,8 @@ bool doGetOpt(ref string[] args)
 	if(useNewlineDelim && alternateDelim)
 		fail("Cannot use both --newline and --delim=VALUE\n" ~ usageHint);
 	
-	if(args.length != 2)
-		fail("Wrong number of arguments\n" ~ usageHint);
+	if(args.length < 2)
+		fail("Missing program to run\n" ~ usageHint);
 	
 	return true;
 }
@@ -94,7 +94,7 @@ int main(string[] args)
 	
 	// Invoke command
 	try
-		return spawnProcess(args[1] ~ outArgs).wait();
+		return spawnProcess(args[1..$] ~ outArgs).wait();
 	catch(ProcessException e)
 	{
 		fail(e.msg);

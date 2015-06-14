@@ -15,7 +15,7 @@ A [recommended solution](http://stackoverflow.com/questions/30720364/honoring-qu
 is to use a null-delimited stream for sending the output of one command to the command line of another. This completely bypasses the shell's command parsing, and thus can avoid the problems above. Unfortunately, using the shell to actually send a null-delimited stream of arguments to a program can still be non-trivial and platform-specific, so this cross-platform tool helps you out:
 
 ```bash
-$ safearg program_to_run < INPUT
+$ safearg program_to_run [initial-arguments] < INPUT
 ```
 
 For example (Granted, this example is using tools that aren't built-in on Windows, but it's only an example for illustration. Safearg itself is cross-platform, and sticking to only cross-platform tools would still work fine):
@@ -30,9 +30,8 @@ $ printf "[%s]\n" $(<datafile)            # Fails?! Plus, it's a security risk :
 ['hello]
 [world']
 
-$ echo -n '[%s]\n' >datafile              # Send printf's first arg to datafile
-$ printf "\0abc\0hello world" >>datafile  # Append next two args: \0abc\0hello world
-$ safearg printf <datafile                # Works!
+$ printf "\0abc\0hello world" >datafile  # Store in file: \0abc\0hello world
+$ safearg printf '[%s]\n' <datafile                # Works!
 [abc]
 [hello world]
 ```
