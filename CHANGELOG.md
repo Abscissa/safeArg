@@ -3,6 +3,10 @@
 
 (Dates below are YYYY/MM/DD)
 
+v0.9.5 - TBD
+-------------------
+- **Fixed:** Correctly pass-thru all options after program_to_run, instead of mistakenly trying to process them.
+
 v0.9.4 - 2015/06/14
 -------------------
 - **Fixed:** Build failure for projects depending on safeArg (gen-package-version was run from wrong directory).

@@ -61,6 +61,7 @@ bool doGetOpt(ref string[] args)
 	try
 	{
 		auto helpInfo = args.getopt(
+			std.getopt.config.stopOnFirstNonOption,
 			"n|newline", `Use \n and \r\n newlines as delimiter insetad of \0`, &useNewlineDelim,
 			"delim",     `Use alternate character as delimiter insetad of \0 (ex: --delim=,)`, &alternateDelim,
 			"p|post",    `Extra "post"-args to be added at the end of the command line.`, &postArgs,
