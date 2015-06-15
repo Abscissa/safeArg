@@ -6,6 +6,7 @@
 v0.9.5 - TBD
 -------------------
 - **Fixed:** Correctly pass-thru all options after program_to_run, instead of mistakenly trying to process them.
+- **Fixed:** Fix a build issue for dub projects with a dependency on safearg by updating minimum gen-package-version to v0.9.3.
 
 v0.9.4 - 2015/06/14
 -------------------
