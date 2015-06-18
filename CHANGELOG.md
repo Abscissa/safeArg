@@ -3,6 +3,10 @@
 
 (Dates below are YYYY/MM/DD)
 
+v0.9.6 - TBD
+-------------------
+- **Enhancement:** Add ```--verbose|-v``` to echo the generated command to std before running.
+
 v0.9.5 - 2015/06/15
 -------------------
 - **Fixed:** Correctly pass-thru all options after program_to_run, instead of mistakenly trying to process them.

@@ -51,6 +51,7 @@ OPTIONS:`;
 bool useNewlineDelim = false;
 string alternateDelim = null;
 string[] postArgs = null;
+bool verbose = false;
 
 // Returns: Should program execution continue?
 bool doGetOpt(ref string[] args)
@@ -65,6 +66,7 @@ bool doGetOpt(ref string[] args)
 			"n|newline", `Use \n and \r\n newlines as delimiter insetad of \0`, &useNewlineDelim,
 			"delim",     `Use alternate character as delimiter insetad of \0 (ex: --delim=,)`, &alternateDelim,
 			"p|post",    `Extra "post"-args to be added at the end of the command line.`, &postArgs,
+			"v|verbose", "Echo the generated command to std before running.", &verbose,
 			"version",   "Show safearg's version number and exit", &showVersion,
 		);
 
@@ -113,9 +115,14 @@ int main(string[] args)
 	else
 		outArgs = parseNullDelimited(inputRange);
 	
+	// Build and echo command
+	string[] cmd = args[1..$] ~ outArgs ~ postArgs;
+	if(verbose)
+		writeln(escapeShellCommand(cmd));
+
 	// Invoke command
 	try
-		return spawnProcess(args[1..$] ~ outArgs ~ postArgs).wait();
+		return spawnProcess(cmd).wait();
 	catch(ProcessException e)
 	{
 		fail(e.msg);
