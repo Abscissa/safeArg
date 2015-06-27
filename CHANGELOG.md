@@ -5,7 +5,7 @@
 
 v0.9.6 - TBD
 -------------------
-- **Enhancement:** Add ```--verbose|-v``` to echo the generated command to std before running.
+- **Enhancement:** Add ```--verbose|-v``` to echo the generated command to stdout before running.
 
 v0.9.5 - 2015/06/15
 -------------------

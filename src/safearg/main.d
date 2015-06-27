@@ -66,7 +66,7 @@ bool doGetOpt(ref string[] args)
 			"n|newline", `Use \n and \r\n newlines as delimiter insetad of \0`, &useNewlineDelim,
 			"delim",     `Use alternate character as delimiter insetad of \0 (ex: --delim=,)`, &alternateDelim,
 			"p|post",    `Extra "post"-args to be added at the end of the command line.`, &postArgs,
-			"v|verbose", "Echo the generated command to std before running.", &verbose,
+			"v|verbose", "Echo the generated command to stdout before running.", &verbose,
 			"version",   "Show safearg's version number and exit", &showVersion,
 		);
 
@@ -118,7 +118,7 @@ int main(string[] args)
 	// Build and echo command
 	string[] cmd = args[1..$] ~ outArgs ~ postArgs;
 	if(verbose)
-		writeln(escapeShellCommand(cmd));
+		stdout.rawWrite(escapeShellCommand(cmd)~"\n");
 
 	// Invoke command
 	try
