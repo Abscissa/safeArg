@@ -9,8 +9,8 @@
 	"targetName": "safearg",
 	"sourcePaths": ["src"],
 	"dependencies": {
-		"scriptlike": "~>0.9.0",
-		"gen-package-version": "~>1.0.0"
+		"scriptlike": "~>0.9.1",
+		"gen-package-version": "~>1.0.1"
 	},
 	"preGenerateCommands": ["dub run gen-package-version -- safearg --root=$PACKAGE_DIR --dub"]
 }
