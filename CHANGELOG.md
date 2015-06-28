@@ -3,7 +3,7 @@
 
 (Dates below are YYYY/MM/DD)
 
-v0.9.6 - TBD
+v0.9.6 - 2015/06/27
 -------------------
 - **Enhancement:** Add ```--verbose|-v``` to echo the generated command to stdout before running.
 
